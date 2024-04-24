@@ -5,7 +5,7 @@ class Consumer extends WorkingThread{
 
     @Override
     public void run() {
-        while (storage.workDoneProducer < storage.productsToProcessed){
+        while (storage.ConsumersWorkDone < storage.productsToProcessed){
             try {
                 storage.empty.acquire();
                 storage.access.acquire();
