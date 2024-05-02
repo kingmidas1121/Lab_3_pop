@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicInteger;
 
 class Storage{
     public int size;
@@ -8,10 +9,11 @@ class Storage{
     public Semaphore empty;
     public Semaphore full;
     public List<String> buffer;
-    public volatile int productsToProcessed;
-    public volatile int workDoneProducer;
-    public volatile int workDoneConsumer;
+    public int productsToProcessed;
     private int lastIndex = 0;
+    public AtomicInteger itemsProduced;
+    public AtomicInteger itemsReceived;
+
 
     public Storage(int size, int productsToProcessed){
         this.size = size;
@@ -19,8 +21,8 @@ class Storage{
         this.empty = new Semaphore(0);
         this.full = new Semaphore(size);
         this.productsToProcessed = productsToProcessed;
-        this.workDoneProducer = 0;
-        this.workDoneConsumer = 0;
+        this.itemsProduced = new AtomicInteger(productsToProcessed);
+        this.itemsReceived = new AtomicInteger(productsToProcessed);
         buffer = new ArrayList<>();
     }
 

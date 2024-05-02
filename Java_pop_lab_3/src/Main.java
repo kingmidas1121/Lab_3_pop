@@ -5,7 +5,7 @@ import java.util.concurrent.Semaphore;
 
 public class Main {
     public static void main(String[] args) {
-        Init(4, 10, 4, 6);
+        Init(4, 10, 3, 6);
     }
     private static void Init(int storageSize, int productsToProcessed, int producers, int consumers) {
         Storage storage = new Storage(storageSize, productsToProcessed);
