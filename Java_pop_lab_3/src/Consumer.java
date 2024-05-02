@@ -5,7 +5,8 @@ class Consumer extends WorkingThread{
 
     @Override
     public void run() {
-        while (storage.itemsReceived.getAndDecrement() > 0){
+
+        while (storage.itemsReceived.getAndDecrement() > 0) {
             try {
                 storage.empty.acquire();
                 storage.access.acquire();
@@ -16,9 +17,8 @@ class Consumer extends WorkingThread{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            System.out.println("........... " + this.index + " consumer was ended");
 
         }
-        System.out.println("........... "+ this.index + " consumer was ended");
-
     }
 }

@@ -55,7 +55,7 @@ procedure Main is
       task body ConsumerTask is
       begin
 
-         while (ProducersWorkDone < WorkTarget) loop
+         while (ConsumersWorkDone  < WorkTarget) loop
 
             Empty_Storage.Seize;
             Access_Storage.Seize;
